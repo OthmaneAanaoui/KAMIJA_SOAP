@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const service = require('./service/userService');
+const serviceMail = require('./service/mailing');
 const User = require('./models/user');
 const lobby = require('./models/lobby');
 
@@ -16,7 +17,7 @@ router.use('/', (req, res, next) => {
         next();
     }
 });
-
+router.post('/sendmail', serviceMail.add);
 router.get('/user/:id', service.getById);
 
 router.delete('/user/:id', service.delete);
